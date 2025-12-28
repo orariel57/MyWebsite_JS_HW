@@ -1,4 +1,4 @@
-// מפה שמחברת שם חיה לקובץ סאונד
+//חיבור שם חיה לסאונד
 const sounds = {
   bear: "sounds/bear.mp3",
   bird: "sounds/bird.mp3",
@@ -15,13 +15,13 @@ function playAnimal(animalName) {
   const src = sounds[animalName];
   if (!src) return;
 
-  // אם יש סאונד קודם שמתנגן - לעצור אותו
+  // אם יש סאונד קודם שמתנגן - נעצור אותו
   if (currentAnimalAudio) {
     currentAnimalAudio.pause();
     currentAnimalAudio.currentTime = 0;
   }
 
-  // להפעיל את החדש
+  // נפעיל את החדש
   currentAnimalAudio = new Audio(src);
   currentAnimalAudio.play();
 }
@@ -38,7 +38,6 @@ document.querySelectorAll(".animal").forEach((btn) => {
 document.addEventListener("keydown", (e) => {
   const key = e.key.toLowerCase();
 
-  // אם נלחץ Shift/Alt/Ctrl וכו' – לא מציקים עם הודעה
   if (key.length !== 1) return;
 
   const btn = document.querySelector(`.animal[data-key="${key}"]`);
@@ -47,19 +46,13 @@ document.addEventListener("keydown", (e) => {
     playAnimal(btn.dataset.animal);
   } else {
     alert("No such animal key!");
-    // או בעברית:
-    // alert("אין חיה שמוגדרת למקש הזה!");
   }
 });
-ן
-
 
 // מוזיקת רקע
 const bgMusic = new Audio("sounds/forest.mp3");
 bgMusic.loop = true;
 
-// אלמנט שלא נלמד בכיתה:
-// שימוש במאפיין volume לשליטה בעוצמת הסאונד
 bgMusic.volume = 0.25;
 
 const musicBtn = document.getElementById("musicToggleBtn");
